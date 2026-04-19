@@ -1,0 +1,5 @@
+# @package model
+name: target_scaling_oracle
+type: builtin
+builtin_type: synthetic_perturbation_oracle
+description: "Target scaling oracle (per-perturbation penetrance from test data)"

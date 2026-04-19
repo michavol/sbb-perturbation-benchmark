@@ -1,0 +1,5 @@
+# @package model
+name: target_scaling
+type: builtin
+builtin_type: synthetic_perturbation
+description: "Target scaling baseline (learned penetrance fraction for target genes)"

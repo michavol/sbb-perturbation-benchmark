@@ -1,0 +1,115 @@
+defaults:
+  - dataset: norman19
+  - model: baselines
+  - modelgroup: null  # Optional modelgroup config for multi-model comparisons (renamed from 'group')
+  - _self_
+
+# Execution settings (NOT part of model hash)
+execution:
+  parallel_folds: true              # Enable parallel fold processing
+  max_parallel_folds: null          # Limit (null = use all available GPUs)
+
+experiment:
+  name: "${model.name}_${dataset.name}"
+  description: "Benchmarking ${model.name} on ${dataset.name}"
+  tags: []
+  
+output:
+  save_predictions: true
+  save_metrics: true
+  generate_plots: true  
+  
+  # NEW: Plotting configuration
+  plotting:
+    # Multi-covariate handling - only "separate" for now
+    covariate_aggregation: "separate"  # Create separate plots for each covariate/donor
+    stripplot_show_median: true       # Add dotted per-model median lines to stripplots
+    
+    # Plot types to generate
+    condition_comparison: true
+    variance_rank: false
+    deg_quantile_impact: false
+    
+    # Plot parameters
+    variance_analysis:
+      top_k_genes: 2048
+    deg_quantiles:
+      n_quantiles: 5
+    metrics_to_plot:
+      - mse
+      - wmse
+      - pds
+      - pds_wmse
+      - pds_pearson_deltapert
+      - pds_weighted_pearson_deltapert
+      - pds_r2_deltapert
+      - pds_weighted_r2_deltapert
+      - cpds
+      - cpds_wmse
+      - cpds_pearson_deltapert
+      - cpds_weighted_pearson_deltapert
+      - cpds_r2_deltapert
+      - cpds_weighted_r2_deltapert
+      - genewise_mse
+      - cmse
+      - cwmse
+      - fcmse
+      - fmse
+      - fpearson
+      - fcpearson
+      - fr2
+      - fcr2
+      - pearson_deltactrl
+      - pearson_deltactrl_degs
+      - weighted_pearson_deltactrl
+      - cweighted_pearson_deltactrl
+      - fpearson_deltactrl
+      - cpearson_deltactrl
+      - fcpearson_deltactrl
+      - pearson_deltapert
+      - pearson_deltapert_degs
+      - weighted_pearson_deltapert
+      - cweighted_pearson_deltapert
+      - fpearson_deltapert
+      - cpearson_deltapert
+      - fcpearson_deltapert
+      - r2_deltactrl
+      - r2_deltactrl_degs
+      - cr2_deltactrl
+      - fr2_deltactrl
+      - fcr2_deltactrl
+      - r2_deltapert
+      - r2_deltapert_degs
+      - cr2_deltapert
+      - fr2_deltapert
+      - fcr2_deltapert
+      - weighted_r2_deltactrl
+      - cweighted_r2_deltactrl
+      - weighted_r2_deltapert
+      - cweighted_r2_deltapert
+    
+    # Output options
+    save_formats: ["png"]
+    dpi: 300
+
+# Metric and baseline selection (null = use all)
+metrics:
+  enabled: [mse, wmse, cmse, cwmse, pearson_deltapert, cpearson_deltapert, weighted_pearson_deltapert, cweighted_pearson_deltapert, r2_deltapert, cr2_deltapert, weighted_r2_deltapert, cweighted_r2_deltapert, pds, pds_wmse, pds_pearson_deltapert, pds_weighted_pearson_deltapert, pds_r2_deltapert, pds_weighted_r2_deltapert, cpds, cpds_wmse, cpds_pearson_deltapert, cpds_weighted_pearson_deltapert, cpds_r2_deltapert, cpds_weighted_r2_deltapert]
+  #enabled: [mse, wmse, pearson_deltapert, weighted_pearson_deltapert, pds, pds_wmse]
+
+  # Weight source used for ALL weighted metrics (wmse, weighted_pearson_deltapert, pds_wmse, etc.)
+  # Options: 'vsrest'    – adata.uns DEGs (perturbation vs all others; default, no external file needed)
+  #          'vscontrol' – deg_control.csv  (perturbation vs control cells, computed on all cells)
+  #          'synthetic' – deg_synthetic.csv (perturbation vs synthetic control cells, computed on all cells)
+  # NOTE: for 'vscontrol'/'synthetic', missing perturbation-specific weights raise an error (no fallback).
+  deg_weight_source: synthetic
+
+baselines:
+  enabled: [ground_truth, control, dataset_mean,additive,technical_duplicate,interpolated_duplicate]
+  
+hydra:
+  run:
+    dir: outputs/${experiment.name}/${now:%Y-%m-%d_%H-%M-%S}
+  sweep:
+    dir: outputs/multirun/${experiment.name}/${now:%Y-%m-%d_%H-%M-%S}
+    subdir: ${hydra:job.num} 

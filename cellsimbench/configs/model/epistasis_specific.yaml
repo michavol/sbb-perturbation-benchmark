@@ -1,0 +1,8 @@
+# @package model
+name: epistasis_specific
+type: builtin
+builtin_type: lse_regression
+description: "LSE perturbation-specific baseline"
+hyperparameters:
+  variant: specific
+  fit_mode: joint_ls

@@ -1,0 +1,4 @@
+name: global_shift
+type: builtin
+builtin_type: global_shift
+description: Global shift baseline (control mean + shared offset)

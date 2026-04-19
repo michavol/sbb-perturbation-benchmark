@@ -1,0 +1,20 @@
+models:
+  - presage
+  - pdae
+  - sclambda 
+  - gears 
+  - scgpt 
+  - epistasis_shared
+  - epistasis_specific
+  - linear_regression
+  # - target_scaling
+  # - target_scaling_oracle
+  # - fmlp_esm2 
+  # - fmlp_geneformer
+  # - fmlp_scgpt 
+  # - fmlp_genept
+  # - genept_embedding_nn
+  # - epistasis_hybrid
+  # - linear_regression_wmse
+
+description: "Compare some different perturbation response models"

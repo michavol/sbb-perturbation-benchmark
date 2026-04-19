@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pdf
+*.png
+*.pth
+*.DS_Store
+*.json
+*.tex
+*.h5ad
+*.pth
+*.pt
+*.npy
+*.csv
+*.tsv

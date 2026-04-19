@@ -1,0 +1,43 @@
+# @package model
+name: pdae
+type: docker
+description: "pDAE perturbation extrapolation model for combinatorial prediction"
+
+docker:
+  image: "cellsimbench/pdae:latest"
+  memory: "max"
+  cpus: "max"
+  gpu: true
+
+hyperparameters:
+  # Data parsing
+  pert_col: "condition"
+  pert_sep: "+"
+  pert_ctrl: "ctrl"
+
+  # PDAEConfig
+  seed: 42
+  model_name: "pdae"
+  batch_size: 32
+  learning_rate: 0.0001
+  dim_z_model: 64
+  dim_noise_model: 6
+  sigma_noise_model: 0.1
+  decoder_layer_shapes: [128, 128, 128]
+  encoder_layer_shapes: [128, 128, 128]
+  weight_reconstruction_loss: 0.0
+  weight_perturbation_energy_loss: 1.0
+  weight_marginal_prior_energy_loss: 0.0001
+  weight_l21: 0.0
+  update_encoder_on_reconstruction_loss: false
+  normalize_energy_loss: false
+  beta: 1.0
+  use_bias_in_perturbation_matrix: false
+  use_softplus_after_decoder: true
+
+  # Training controls
+  num_epochs: 1000
+  n_epochs_model_checkpoint: null
+  n_epochs_plot_losses: null
+  n_epochs_loss_print: 1
+  print_tqdm: true

@@ -1,0 +1,5 @@
+# @package model
+name: linear_regression
+type: builtin
+builtin_type: onehot_linear
+description: "One-hot linear regression baseline"

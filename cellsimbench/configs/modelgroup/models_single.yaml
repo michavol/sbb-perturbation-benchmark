@@ -1,0 +1,15 @@
+models:
+  - presage
+  - target_scaling
+  - target_scaling_oracle
+  - gears  
+  - sclambda 
+  - scgpt  
+  # - fmlp_esm2 
+  # - fmlp_geneformer
+  # - fmlp_scgpt 
+  # - fmlp_genept
+  # - genept_embedding_nn
+
+
+description: "Compare some different perturbation response models"

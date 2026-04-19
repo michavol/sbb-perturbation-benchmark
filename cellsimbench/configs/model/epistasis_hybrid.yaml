@@ -1,0 +1,7 @@
+# @package model
+name: epistasis_hybrid
+type: builtin
+builtin_type: lse_regression
+description: "LSE hybrid baseline (train-specific with agnostic fallback)"
+hyperparameters:
+  variant: hybrid

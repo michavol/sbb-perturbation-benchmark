@@ -1,0 +1,8 @@
+# @package model
+name: epistasis_shared
+type: builtin
+builtin_type: lse_regression
+description: "LSE shared-offset baseline (perturbation-agnostic)"
+hyperparameters:
+  variant: shared
+  fit_mode: joint_ls

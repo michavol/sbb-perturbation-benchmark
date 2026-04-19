@@ -1,0 +1,8 @@
+# @package model
+name: genept_embedding_nn
+type: builtin
+builtin_type: genept_embedding_nn
+description: "Nearest-neighbor baseline using GenePT embeddings"
+hyperparameters:
+  embedding_dim: null
+  distance_metric: cosine

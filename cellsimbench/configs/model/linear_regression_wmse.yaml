@@ -1,0 +1,5 @@
+# @package model
+name: linear_regression_wmse
+type: builtin
+builtin_type: onehot_linear_wmse
+description: "Linear regression with weighted MSE loss (oracle)"
