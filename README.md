@@ -419,7 +419,8 @@ If you use this code, please cite:
   title={Signal, Bounds, and Baselines: Principles for Rigorous Evaluation of High-Dimensional Biological Perturbation Prediction},
   author={Vollenweider, Michael and B{\"u}hlmann, Peter},
   journal={bioRxiv},
-  year={2026}
+  year={2026},
+  doi={10.64898/2026.04.20.719650}
 }
 ```
 
